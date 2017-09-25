@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @link http://www.coreb2c.com/
+ * @copyright Copyright (c) 2008 CoreB2C
+ * @license https://github.com/coreb2c/yii2-smartadmin/blob/master/LICENSE.md/
  */
 
 namespace yii\bootstrap;
@@ -55,8 +55,8 @@ use yii\helpers\ArrayHelper;
  * ```
  *
  * @see http://getbootstrap.com/javascript/#tabs
- * @author Antonio Ramirez <amigo.cobos@gmail.com>
- * @since 2.0
+ * @author Abdullah Tulek <abdullah.tulek@coreb2c.com>
+ * @since 1.0
  */
 class Tabs extends Widget
 {
