@@ -1,20 +1,17 @@
 {
     "name": "coreb2c/yii2-smartadmin",
-    "description": "The Twitter Bootstrap extension for the Yii framework",
-    "keywords": ["yii2", "bootstrap"],
+    "description": "The SmartAdmin Template extension for the Yii 2 framework",
+    "keywords": ["yii2", "bootstrap", "smartadmin template"],
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
     "support": {
         "issues": "https://github.com/coreb2c/yii2-smartadmin/issues",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
         "source": "https://github.com/coreb2c/yii2-smartadmin"
     },
     "authors": [
         {
-            "name": "Qiang Xue",
-            "email": "qiang.xue@gmail.com"
+            "name": "Abdullah Tulek",
+            "email": "abdullah.tulek@coreb2c.com"
         }
     ],
     "require": {
@@ -34,7 +31,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0.x-dev"
+            "dev-master": "1.0.x-dev"
         }
     }
 }

@@ -1,6 +1,8 @@
 <h1 align="center">SmartAdmin Template Extension for Yii 2</h1>
     <br>
-
+<p>
+The extension is not ready yet for usage. Please be patient about Version 1 release.
+</p>
 
 Installation
 ------------
