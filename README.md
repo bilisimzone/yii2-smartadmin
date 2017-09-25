@@ -1,7 +1,4 @@
 <p align="center">
-    <a href="http://getbootstrap.com/" target="_blank" rel="external">
-        <img src="https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg" height="80px">
-    </a>
     <h1 align="center">SmartAdmin Template Extension for Yii 2</h1>
     <br>
 </p>
