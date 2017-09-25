@@ -8,13 +8,13 @@
 Для этого запустите
 
 ```
-php composer.phar require --prefer-dist yiisoft/yii2-bootstrap
+php composer.phar require --prefer-dist coreb2c/yii2-smartadmin
 ```
 
 или добавьте
 
 ```
-"yiisoft/yii2-bootstrap": "~2.0.0"
+"coreb2c/yii2-smartadmin": "~2.0.0"
 ```
 
 в секцию require вашего `composer.json`.

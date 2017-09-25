@@ -14,9 +14,9 @@ For license information check the [LICENSE](LICENSE.md)-file.
 
 Documentation is at [docs/guide/README.md](docs/guide/README.md).
 
-[![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-bootstrap/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-bootstrap)
-[![Total Downloads](https://poser.pugx.org/yiisoft/yii2-bootstrap/downloads.png)](https://packagist.org/packages/yiisoft/yii2-bootstrap)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-bootstrap.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-bootstrap)
+[![Latest Stable Version](https://poser.pugx.org/coreb2c/yii2-smartadmin/v/stable.png)](https://packagist.org/packages/coreb2c/yii2-smartadmin)
+[![Total Downloads](https://poser.pugx.org/coreb2c/yii2-smartadmin/downloads.png)](https://packagist.org/packages/coreb2c/yii2-smartadmin)
+[![Build Status](https://travis-ci.org/coreb2c/yii2-smartadmin.svg?branch=master)](https://travis-ci.org/coreb2c/yii2-smartadmin)
 
 
 Installation
@@ -27,13 +27,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist yiisoft/yii2-bootstrap
+php composer.phar require --prefer-dist coreb2c/yii2-smartadmin
 ```
 
 or add
 
 ```
-"yiisoft/yii2-bootstrap": "~2.0.0"
+"coreb2c/yii2-smartadmin": "~2.0.0"
 ```
 
 to the require section of your `composer.json` file.

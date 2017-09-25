@@ -144,7 +144,7 @@ EXPECTED;
     }
 
     /**
-     * @see https://github.com/yiisoft/yii2-bootstrap/issues/162
+     * @see https://github.com/coreb2c/yii2-smartadmin/issues/162
      */
     public function testExplicitActive()
     {
@@ -175,7 +175,7 @@ EXPECTED;
     }
 
     /**
-     * @see https://github.com/yiisoft/yii2-bootstrap/issues/162
+     * @see https://github.com/coreb2c/yii2-smartadmin/issues/162
      */
     public function testImplicitActive()
     {
@@ -205,7 +205,7 @@ EXPECTED;
     }
 
     /**
-     * @see https://github.com/yiisoft/yii2-bootstrap/issues/162
+     * @see https://github.com/coreb2c/yii2-smartadmin/issues/162
      */
     public function testExplicitActiveSubitems()
     {
@@ -239,7 +239,7 @@ EXPECTED;
     }
 
     /**
-     * @see https://github.com/yiisoft/yii2-bootstrap/issues/162
+     * @see https://github.com/coreb2c/yii2-smartadmin/issues/162
      */
     public function testImplicitActiveSubitems()
     {
@@ -272,8 +272,8 @@ EXPECTED;
     }
 
     /**
-     * @see https://github.com/yiisoft/yii2-bootstrap/issues/96
-     * @see https://github.com/yiisoft/yii2-bootstrap/issues/157
+     * @see https://github.com/coreb2c/yii2-smartadmin/issues/96
+     * @see https://github.com/coreb2c/yii2-smartadmin/issues/157
      */
     public function testDeepActivateParents()
     {

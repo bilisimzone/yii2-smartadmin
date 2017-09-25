@@ -82,7 +82,7 @@ HTML;
     /**
      * @depends testRadioList
      *
-     * @see https://github.com/yiisoft/yii2-bootstrap/issues/81
+     * @see https://github.com/coreb2c/yii2-smartadmin/issues/81
      */
     public function testRadioListItemOptions()
     {
@@ -98,7 +98,7 @@ HTML;
     /**
      * @depends testCheckboxList
      *
-     * @see https://github.com/yiisoft/yii2-bootstrap/issues/81
+     * @see https://github.com/coreb2c/yii2-smartadmin/issues/81
      */
     public function testCheckboxListItemOptions()
     {
