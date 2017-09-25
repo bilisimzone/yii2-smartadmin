@@ -1,7 +1,5 @@
-<p align="center">
-    <h1 align="center">SmartAdmin Template Extension for Yii 2</h1>
+<h1 align="center">SmartAdmin Template Extension for Yii 2</h1>
     <br>
-</p>
 
 
 Installation
