@@ -5,7 +5,7 @@
  * @license https://github.com/coreb2c/yii2-smartadmin/blob/master/LICENSE.md/
  */
 
-namespace yii\bootstrap;
+namespace coreb2c\smartadmin;
 
 use yii\helpers\ArrayHelper;
 
@@ -73,7 +73,7 @@ class ButtonGroup extends Widget
      */
     public function run()
     {
-        BootstrapAsset::register($this->getView());
+        SAAsset::register($this->getView());
         return Html::tag('div', $this->renderButtons(), $this->options);
     }
 

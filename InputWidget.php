@@ -5,7 +5,7 @@
  * @license https://github.com/coreb2c/yii2-smartadmin/blob/master/LICENSE.md/
  */
 
-namespace yii\bootstrap;
+namespace coreb2c\smartadmin;
 
 /**
  * InputWidget is an adjusted for bootstrap needs version of [[\yii\widgets\InputWidget]].
@@ -15,5 +15,5 @@ namespace yii\bootstrap;
  */
 class InputWidget extends \yii\widgets\InputWidget
 {
-    use BootstrapWidgetTrait;
+    use SAWidgetTrait;
 }

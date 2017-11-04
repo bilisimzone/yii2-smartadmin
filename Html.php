@@ -5,7 +5,7 @@
  * @license https://github.com/coreb2c/yii2-smartadmin/blob/master/LICENSE.md/
  */
 
-namespace yii\bootstrap;
+namespace coreb2c\smartadmin;
 
 /**
  * Html is an enhanced version of [[\yii\helpers\Html]] helper class dedicated to the Bootstrap needs.

@@ -5,7 +5,7 @@
  * @license https://github.com/coreb2c/yii2-smartadmin/blob/master/LICENSE.md/
  */
 
-namespace yii\bootstrap;
+namespace coreb2c\smartadmin;
 
 use Yii;
 use yii\helpers\Json;
@@ -31,7 +31,7 @@ use yii\helpers\Json;
  * @author Abdullah Tulek <abdullah.tulek@coreb2c.com>
  * @since 2.0.6
  */
-trait BootstrapWidgetTrait
+trait SAWidgetTrait
 {
     /**
      * @var array the options for the underlying Bootstrap JS plugin.
@@ -70,7 +70,7 @@ trait BootstrapWidgetTrait
     {
         $view = $this->getView();
 
-        BootstrapPluginAsset::register($view);
+        SAPluginAsset::register($view);
 
         $id = $this->options['id'];
 

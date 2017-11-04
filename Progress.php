@@ -5,7 +5,7 @@
  * @license https://github.com/coreb2c/yii2-smartadmin/blob/master/LICENSE.md/
  */
 
-namespace yii\bootstrap;
+namespace coreb2c\smartadmin;
 
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
@@ -103,7 +103,7 @@ class Progress extends Widget
      */
     public function run()
     {
-        BootstrapAsset::register($this->getView());
+        SAAsset::register($this->getView());
         return implode("\n", [
             Html::beginTag('div', $this->options),
             $this->renderProgress(),

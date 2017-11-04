@@ -5,7 +5,7 @@
  * @license https://github.com/coreb2c/yii2-smartadmin/blob/master/LICENSE.md/
  */
 
-namespace yii\bootstrap;
+namespace coreb2c\smartadmin;
 
 /**
  * \yii\bootstrap\Widget is the base class for all smartadmin widgets.
@@ -14,7 +14,7 @@ namespace yii\bootstrap;
  */
 class Widget extends \yii\base\Widget
 {
-    use BootstrapWidgetTrait;
+    use SAWidgetTrait;
 
     /**
      * @var array the HTML attributes for the widget container tag.

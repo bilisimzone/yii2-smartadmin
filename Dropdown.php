@@ -5,7 +5,7 @@
  * @license https://github.com/coreb2c/yii2-smartadmin/blob/master/LICENSE.md/
  */
 
-namespace yii\bootstrap;
+namespace coreb2c\smartadmin;
 
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
@@ -86,7 +86,7 @@ class Dropdown extends Widget
      */
     public function run()
     {
-        BootstrapPluginAsset::register($this->getView());
+        SAPluginAsset::register($this->getView());
         $this->registerClientEvents();
         return $this->renderItems($this->items, $this->options);
     }

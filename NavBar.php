@@ -5,7 +5,7 @@
  * @license https://github.com/coreb2c/yii2-smartadmin/blob/master/LICENSE.md/
  */
 
-namespace yii\bootstrap;
+namespace coreb2c\smartadmin;
 
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -136,7 +136,7 @@ class NavBar extends Widget
         }
         $tag = ArrayHelper::remove($this->options, 'tag', 'nav');
         echo Html::endTag($tag);
-        BootstrapPluginAsset::register($this->getView());
+        SAPluginAsset::register($this->getView());
     }
 
     /**

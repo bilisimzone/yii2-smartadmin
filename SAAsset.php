@@ -5,24 +5,20 @@
  * @license https://github.com/coreb2c/yii2-smartadmin/blob/master/LICENSE.md/
  */
 
-namespace yii\bootstrap;
+namespace coreb2c\smartadmin;
 
 use yii\web\AssetBundle;
 
 /**
- * Asset bundle for the Twitter bootstrap javascript files.
+ * Asset bundle for the Twitter bootstrap css files.
  *
  * 
  * @since 2.0
  */
-class BootstrapPluginAsset extends AssetBundle
+class SAAsset extends AssetBundle
 {
     public $sourcePath = '@bower/bootstrap/dist';
-    public $js = [
-        'js/bootstrap.js',
-    ];
-    public $depends = [
-        'yii\web\JqueryAsset',
-        'yii\bootstrap\BootstrapAsset',
+    public $css = [
+        'css/bootstrap.css',
     ];
 }
