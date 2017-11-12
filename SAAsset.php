@@ -17,7 +17,7 @@ use yii\web\AssetBundle;
  */
 class SAAsset extends AssetBundle
 {
-    public $sourcePath = '@bower/bootstrap/dist';
+    public $sourcePath = '@webroot/smartadmin';
     public $css = [
         'css/bootstrap.css',
     ];
