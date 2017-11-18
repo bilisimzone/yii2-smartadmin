@@ -21,7 +21,14 @@
     },
     "autoload": {
         "psr-4": {
-            "coreb2c\\smartadmin\\": ""
+            "coreb2c\\auth\\": ""
+        }
+    },
+    "extra": {
+        "bootstrap": "coreb2c\\auth\\Bootstrap",
+         "branch-alias": {
+            "dev-master": "1.0.x-dev",
+            "dev-develop": "1.0.x-dev"
         }
     }
 }
