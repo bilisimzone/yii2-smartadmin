@@ -1,14 +1,10 @@
 <?php
-/**
- * @link http://www.coreb2c.com/
- * @copyright Copyright (c) 2008 CoreB2C
- * @license https://github.com/coreb2c/yii2-smartadmin/blob/master/LICENSE.md/
- */
 
 namespace coreb2c\smartadmin;
 
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 
 /**
  * Dropdown renders a Bootstrap dropdown menu component.
@@ -27,13 +23,9 @@ use yii\helpers\ArrayHelper;
  *         ]);
  *     ?>
  * </div>
- * ```
- * @see http://getbootstrap.com/javascript/#dropdowns
- * @author Abdullah Tulek <abdullah.tulek@coreb2c.com>
- * @since 2.0
  */
-class Dropdown extends Widget
-{
+class Dropdown extends Widget {
+
     /**
      * @var array list of menu items in the dropdown. Each array element can be either an HTML string,
      * or an array representing a single menu with the following structure:
@@ -53,10 +45,12 @@ class Dropdown extends Widget
      * To insert divider use `<li role="presentation" class="divider"></li>`.
      */
     public $items = [];
+
     /**
      * @var boolean whether the labels for header items should be HTML-encoded.
      */
     public $encodeLabels = true;
+
     /**
      * @var array|null the HTML attributes for sub-menu container tags.
      * If not set - [[options]] value will be used for it.
@@ -64,13 +58,11 @@ class Dropdown extends Widget
      */
     public $submenuOptions;
 
-
     /**
      * Initializes the widget.
      * If you override this method, make sure you call the parent implementation first.
      */
-    public function init()
-    {
+    public function init() {
         if ($this->submenuOptions === null) {
             // copying of [[options]] kept for BC
             // @todo separate [[submenuOptions]] from [[options]] completely before 2.1 release
@@ -84,10 +76,7 @@ class Dropdown extends Widget
     /**
      * Renders the widget.
      */
-    public function run()
-    {
-        SAPluginAsset::register($this->getView());
-        $this->registerClientEvents();
+    public function run() {
         return $this->renderItems($this->items, $this->options);
     }
 
@@ -98,8 +87,7 @@ class Dropdown extends Widget
      * @return string the rendering result.
      * @throws InvalidConfigException if the label option is not specified in one of the items.
      */
-    protected function renderItems($items, $options = [])
-    {
+    protected function renderItems($items, $options = []) {
         $lines = [];
         foreach ($items as $item) {
             if (is_string($item)) {
@@ -131,7 +119,7 @@ class Dropdown extends Widget
                     $submenuOptions = array_merge($submenuOptions, $item['submenuOptions']);
                 }
                 $content = Html::a($label, $url === null ? '#' : $url, $linkOptions)
-                    . $this->renderItems($item['items'], $submenuOptions);
+                        . $this->renderItems($item['items'], $submenuOptions);
                 Html::addCssClass($itemOptions, ['widget' => 'dropdown-submenu']);
             }
 
@@ -140,4 +128,5 @@ class Dropdown extends Widget
 
         return Html::tag('ul', implode("\n", $lines), $options);
     }
+
 }

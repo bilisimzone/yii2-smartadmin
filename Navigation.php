@@ -1,9 +1,4 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
 
 namespace coreb2c\smartadmin;
 
@@ -22,6 +17,7 @@ use yii\helpers\Html;
  *     'items' => [
  *         [
  *             'label' => 'Home',
+ *             'icon' => '<i class="fa fa-lg fa-fw fa-home"></i>',
  *             'url' => ['site/index'],
  *             'linkOptions' => [...],
  *         ],
@@ -44,11 +40,21 @@ use yii\helpers\Html;
  * ]);
  * ```
  *
- * Note: Multilevel dropdowns beyond Level 1 are not supported in Bootstrap 3.
- *
  */
-class Nav extends Widget
-{
+
+/**
+ * Menu widget.
+ *
+ * @author Abdullah Tulek <abdullah.tulek@coreb2c.com>
+ */
+class Navigation extends Widget {
+
+    /**
+     * @inheritdoc
+     */
+    public $options = [
+    ];
+
     /**
      * @var array list of items in the nav widget. Each array element represents a single
      * menu item which can be either a string or an array with the following structure:
@@ -67,20 +73,30 @@ class Nav extends Widget
      * If a menu item is a string, it will be rendered directly without HTML encoding.
      */
     public $items = [];
+
     /**
      * @var boolean whether the nav items labels should be HTML-encoded.
      */
     public $encodeLabels = true;
+
+    /**
+     * @var boolean whether the minify button enabled.
+     */
+    public $encodeMinifyButton = true;
+    public $minifyButton = '';
+
     /**
      * @var boolean whether to automatically activate items according to whether their route setting
      * matches the currently requested route.
      * @see isItemActive
      */
     public $activateItems = true;
+
     /**
      * @var boolean whether to activate parent menu items when one of the corresponding child menu items is active.
      */
     public $activateParents = false;
+
     /**
      * @var string the route used to determine if a menu item is active or not.
      * If not set, it will use the route of the current request.
@@ -88,6 +104,7 @@ class Nav extends Widget
      * @see isItemActive
      */
     public $route;
+
     /**
      * @var array the parameters used to determine if a menu item is active or not.
      * If not set, it will use `$_GET`.
@@ -95,24 +112,11 @@ class Nav extends Widget
      * @see isItemActive
      */
     public $params;
-    /**
-     * @var string this property allows you to customize the HTML which is used to generate the drop down caret symbol,
-     * which is displayed next to the button text to indicate the drop down functionality.
-     * Defaults to `null` which means `<span class="caret"></span>` will be used. To disable the caret, set this property to be an empty string.
-     */
-    public $dropDownCaret;
-    /**
-     * @var string name of a class to use for rendering dropdowns within this widget. Defaults to [[Dropdown]].
-     * @since 2.0.7
-     */
-    public $dropdownClass = 'coreb2c\smartadmin\Dropdown';
-
 
     /**
      * Initializes the widget.
      */
-    public function init()
-    {
+    public function init() {
         parent::init();
         if ($this->route === null && Yii::$app->controller !== null) {
             $this->route = Yii::$app->controller->getRoute();
@@ -120,35 +124,90 @@ class Nav extends Widget
         if ($this->params === null) {
             $this->params = Yii::$app->request->getQueryParams();
         }
-        if ($this->dropDownCaret === null) {
-            $this->dropDownCaret = '<span class="caret"></span>';
-        }
-        Html::addCssClass($this->options, ['widget' => 'nav']);
+        $userModuleClass = 'coreb2c\auth\Module';
+        $module = \Yii::$app->getModule('auth');
+        $isRbacEnabled = $module->enableRbac === true;
+
+        $this->items = [
+            [
+                'label' => '',
+                'icon' => '<i class="fa fa-lg fa-fw fa-home"></i>',
+                'url' => \yii\helpers\Url::home(),
+                'encode' => false,
+            ],
+            [
+                'label' => \Yii::t('auth', 'Definitions'),
+                'items' => [
+                    [
+                        'label' => \Yii::t('auth', 'Users'),
+                        'url' => ['/auth/admin/index'],
+                        'items' => [
+                            [
+                                'label' => \ Yii::t('auth', 'New user'),
+                                'url' => ['/auth/admin/create'],
+                            ],
+                        ],
+                    ],
+                    [
+                        'label' => \Yii::t('auth', 'Authorization'),
+                        'visible' => $isRbacEnabled,
+                        'items' => [
+                            [
+                                'label' => \Yii::t('auth', 'Roles'),
+                                'url' => ['/auth/rbac/role/index'],
+                            ],
+                            [
+                                'label' => \Yii::t('auth', 'Permissions'),
+                                'url' => ['/auth/rbac/permission/index'],
+                            ],
+                            [
+                                'label' => \Yii::t('auth', 'Rules'),
+                                'url' => ['/auth/rbac/rule/index'],
+                            ],
+                            [
+                                'label' => \Yii::t('auth', 'Create'),
+                                'items' => [
+                                    [
+                                        'label' => \Yii::t('auth', 'New role'),
+                                        'url' => ['/auth/rbac/role/create'],
+                                    ],
+                                    [
+                                        'label' => \Yii::t('auth', 'New permission'),
+                                        'url' => ['/auth/rbac/permission/create'],
+                                    ],
+                                    [
+                                        'label' => \Yii::t('auth', 'New rule'),
+                                        'url' => ['/auth/rbac/rule/create'],
+                                    ]
+                                ]
+                            ],
+                        ],
+                    ],
+                ]
+            ],
+        ];
     }
 
     /**
      * Renders the widget.
      */
-    public function run()
-    {
-        \yii\web\YiiAsset::register($this->getView());
-        return $this->renderItems();
+    public function run() {
+        return Html::tag('nav', $this->renderItems($this->items)) . $this->renderMinifyButton();
     }
 
     /**
      * Renders widget items.
      */
-    public function renderItems()
-    {
-        $items = [];
-        foreach ($this->items as $i => $item) {
+    public function renderItems($items) {
+        $list = [];
+        foreach ($items as $i => $item) {
             if (isset($item['visible']) && !$item['visible']) {
                 continue;
             }
-            $items[] = $this->renderItem($item);
+            $list[] = $this->renderItem($item);
         }
 
-        return Html::tag('ul', implode("\n", $items), $this->options);
+        return Html::tag('ul', implode("\n", $list), $this->options);
     }
 
     /**
@@ -157,8 +216,7 @@ class Nav extends Widget
      * @return string the rendering result.
      * @throws InvalidConfigException
      */
-    public function renderItem($item)
-    {
+    public function renderItem($item) {
         if (is_string($item)) {
             return $item;
         }
@@ -167,9 +225,10 @@ class Nav extends Widget
         }
         $encodeLabel = isset($item['encode']) ? $item['encode'] : $this->encodeLabels;
         $label = $encodeLabel ? Html::encode($item['label']) : $item['label'];
+        $linkIcon = isset($item['icon']) ? $item['icon'] : '';
         $options = ArrayHelper::getValue($item, 'options', []);
         $items = ArrayHelper::getValue($item, 'items');
-        $url = ArrayHelper::getValue($item, 'url', '#');
+        $url = ArrayHelper::getValue($item, 'url', 'javascript:void();');
         $linkOptions = ArrayHelper::getValue($item, 'linkOptions', []);
 
         if (isset($item['active'])) {
@@ -181,15 +240,10 @@ class Nav extends Widget
         if (empty($items)) {
             $items = '';
         } else {
-            $linkOptions['data-toggle'] = 'dropdown';
-            Html::addCssClass($options, ['widget' => 'dropdown']);
-            Html::addCssClass($linkOptions, ['widget' => 'dropdown-toggle']);
-            if ($this->dropDownCaret !== '') {
-                $label .= ' ' . $this->dropDownCaret;
-            }
+            Html::addCssClass($linkOptions, ['widget' => '']);
             if (is_array($items)) {
                 $items = $this->isChildActive($items, $active);
-                $items = $this->renderDropdown($items, $item);
+                $items = $this->renderItems($items);
             }
         }
 
@@ -197,28 +251,29 @@ class Nav extends Widget
             Html::addCssClass($options, 'active');
         }
 
-        return Html::tag('li', Html::a($label, $url, $linkOptions) . $items, $options);
+        return Html::tag('li', Html::a($linkIcon . '<span class="menu-item-parent">' . $label . '</span>', $url, $linkOptions) . $items, $options);
     }
 
     /**
-     * Renders the given items as a dropdown.
-     * This method is called to create sub-menus.
-     * @param array $items the given items. Please refer to [[Dropdown::items]] for the array structure.
-     * @param array $parentItem the parent item information. Please refer to [[items]] for the structure of this array.
-     * @return string the rendering result.
-     * @since 2.0.1
+     * 
+     * @param type $options
+     * @return string
      */
-    protected function renderDropdown($items, $parentItem)
-    {
-        /** @var Widget $dropdownClass */
-        $dropdownClass = $this->dropdownClass;
-        return $dropdownClass::widget([
-            'options' => ArrayHelper::getValue($parentItem, 'dropDownOptions', []),
-            'items' => $items,
-            'encodeLabels' => $this->encodeLabels,
-//            'clientOptions' => false,
-            'view' => $this->getView(),
-        ]);
+    public function renderMinifyButton() {
+        $options = ArrayHelper::getValue($this->options, 'minifyOptions', []);
+        if (!isset($options['class'])) {
+            $options['class'] = 'minifyMe';
+        }
+        if (!isset($options['data-action'])) {
+            $options['data-action'] = 'minifyMenu';
+        }
+        if (!isset($options['icon'])) {
+            $iconOptions['icon'] = '<i class="fa fa-arrow-circle-left hit"></i>';
+        } else {
+            $iconOptions['icon'] = $options['icon'];
+            unset($options['icon']);
+        }
+        return Html::tag('span', $iconOptions['icon'], $options);
     }
 
     /**
@@ -227,8 +282,7 @@ class Nav extends Widget
      * @param bool $active should the parent be active too
      * @return array @see items
      */
-    protected function isChildActive($items, &$active)
-    {
+    protected function isChildActive($items, &$active) {
         foreach ($items as $i => $child) {
             if (is_array($child) && !ArrayHelper::getValue($child, 'visible', true)) {
                 continue;
@@ -262,8 +316,7 @@ class Nav extends Widget
      * @param array $item the menu item to be checked
      * @return bool whether the menu item is active
      */
-    protected function isItemActive($item)
-    {
+    protected function isItemActive($item) {
         if (!$this->activateItems) {
             return false;
         }
@@ -291,4 +344,5 @@ class Nav extends Widget
 
         return false;
     }
+
 }
