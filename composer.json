@@ -1,0 +1,27 @@
+{
+    "name": "coreb2c/yii2-smartadmin",
+    "description": "Smartadmin Responsive Webapp widgets for Yii2",
+    "keywords": ["yii2", "yii2-smartadmin", "Smartadmin Responsive Webapp Template", "coreb2c"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/coreb2c/yii2-smartadmin/issues?state=open",
+        "source": "https://github.com/coreb2c/yii2-smartadmin"
+    },
+    "authors": [
+        {
+            "name": "Abdullah Tulek",
+            "email": "abdullah.tulek@coreb2c.com",
+            "homepage": "http://www.coreb2c.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "yiisoft/yii2": "^2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "coreb2c\\smartadmin\\": ""
+        }
+    }
+}
