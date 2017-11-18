@@ -2,7 +2,6 @@
 
 namespace coreb2c\smartadmin;
 
-use yii;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
