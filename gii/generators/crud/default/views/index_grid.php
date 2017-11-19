@@ -36,6 +36,7 @@ function generateLabel($column_name){
     }
 }
 ?>
+<article class="col-sm-12 col-md-12 col-lg-12">
 <?php
 echo "<?php\n";
 ?>
@@ -138,3 +139,4 @@ JarvisWidget::end();
 <?php
 echo "?>\n";
 ?>
+</article>

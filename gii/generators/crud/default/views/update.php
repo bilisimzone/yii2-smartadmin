@@ -26,6 +26,7 @@ $this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Infl
 $this->params['breadcrumbs'][] = ['label' => $model-><?= $generator->getNameAttribute() ?>, 'url' => ['view', <?= $urlParams ?>]];
 $this->params['breadcrumbs'][] = <?= $generator->generateString('Update') ?>;
 ?>
+<article class="col-sm-12 col-md-12 col-lg-12">
 <?php
 echo "<?php\n";
 ?>
@@ -45,3 +46,4 @@ JarvisWidget::end();
 <?php
 echo "?>\n";
 ?>
+</article>

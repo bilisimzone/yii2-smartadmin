@@ -26,6 +26,8 @@ JarvisWidget::begin([
     'header' => Yii::t('app', 'Search'),
     'widgetIcon' => 'fa fa-search',
     'padding' => true,
+    'collapsed' => true,
+    'toggleButton' => true,
 ]);
 ?>
 

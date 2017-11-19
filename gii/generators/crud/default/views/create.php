@@ -19,6 +19,7 @@ $this->title = <?= $generator->generateString('Create ' . Inflector::camel2words
 $this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass)))) ?>, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<article class="col-sm-12 col-md-12 col-lg-12">
 <?php
 echo "<?php\n";
 ?>
@@ -38,3 +39,4 @@ JarvisWidget::end();
 <?php
 echo "?>\n";
 ?>
+</article>

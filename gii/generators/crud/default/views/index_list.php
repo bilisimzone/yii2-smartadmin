@@ -13,8 +13,8 @@ echo "<?php\n";
 ?>
 
 use yii\helpers\Html;
-use coreb2c\smartadmin\DataTable;
 use yii\widgets\ListView;
+use coreb2c\smartadmin\JarvisWidget;
 <?= $generator->enablePjax ? 'use yii\widgets\Pjax;' : '' ?>
 
 /* @var $this yii\web\View */
@@ -24,8 +24,9 @@ use yii\widgets\ListView;
 $this->title = <?= $generator->generateString(Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass)))) ?>;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<article class="col-sm-12 col-md-12 col-lg-12">
 <?= "    <?php " ?>echo $this->render('_search', ['model' => $searchModel]); ?>
-<?= $generator->enablePjax ? "    <?php Pjax::begin(); ?>\n" : '' ?>
+
 <?php
 echo "<?php\n";
 ?>
@@ -40,7 +41,7 @@ JarvisWidget::begin([
     ],
 ]);
 ?>
-
+<?= $generator->enablePjax ? "    <?php Pjax::begin(); ?>\n" : '' ?>
     <?= "<?= " ?>ListView::widget([
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
@@ -56,3 +57,4 @@ JarvisWidget::end();
 <?php
 echo "?>\n";
 ?>
+</article>
