@@ -28,7 +28,6 @@ class DataTableAsset extends AssetBundle {
         "js/plugin/datatable-responsive/datatables.responsive.min.js",
     ];
     public $depends = [
-        'backend\assets\AppAsset',
-        'yii\web\YiiAsset',
+        'coreb2c\smartadmin\SAAsset',
     ];
 }

@@ -98,10 +98,14 @@ class JarvisWidget extends Widget {
         echo '</h2>';
 
         // Start toolbars
+//        echo "<pre>";
+//        var_dump($this->toolbars);
+//        echo "</pre>";
+//        exit;
         foreach ($this->toolbars as $toolbar) {
             echo '<div class="widget-toolbar">';
             echo $toolbar;
-            echo '<div>';
+            echo '</div>';
         }
         // End toolbars
         echo '</header>';
@@ -130,6 +134,7 @@ class JarvisWidget extends Widget {
     }
 
     public function run() {
+        SAAsset::register($this->getView());
         $content = ob_get_clean();
         echo $content;
         echo '</div>';

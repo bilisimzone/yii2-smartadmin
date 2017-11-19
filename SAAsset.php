@@ -7,15 +7,15 @@
  * @version   1.8.9
  */
 
-namespace backend\views\smartadmin;
-
+namespace coreb2c\smartadmin;
+use yii\web\AssetBundle;
 /**
  * Asset bundle used for all Krajee extensions with bootstrap and jquery dependency.
  *
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class SAAsset extends BaseAssetBundle
+class SAAsset extends AssetBundle
 {
     public $basePath = '@webroot/smartadmin';
     public $baseUrl = '@web/smartadmin';
@@ -46,6 +46,7 @@ class SAAsset extends BaseAssetBundle
         'js/app.min.js',
     ];
     public $depends = [
-        'yii\web\JqueryAsset'
+        'yii\web\JqueryAsset',
+        'yii\web\YiiAsset',
         ];
 }
