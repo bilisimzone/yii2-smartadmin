@@ -46,7 +46,7 @@ JarvisWidget::begin([
     'widgetIcon' => 'fa fa-table',
     'padding' => false,
     'toolbars' => [
-        <?= "<?= " ?>Html::a('<?='<span class="glyphicon glyphicon-plus"></span>';?> ' . <?= $generator->generateString('Create ' . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['create'], ['class' => 'btn btn-warning']) ?>
+        Html::a('<?='<span class="glyphicon glyphicon-plus"></span>';?> ' . <?= $generator->generateString('Create ' . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['create'], ['class' => 'btn btn-warning']),
     ],
 ]);
 ?>
@@ -63,12 +63,12 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
              ?>
         [
             'attribute' => '<?php echo $name; ?>',
-            'headerOptions' => [
+            'headerOptions' => [ 
                 <?php if($count==1): ?>'data-class' => 'expand'<?php else: ?>'data-hide' => 'phone,tablet'<?php endif; ?>,
             ],
             'filterInputOptions' => [
                 'class' => 'form-control',
-                'placeholder' => Yii::t('app', 'Filter <?php echo generateLabel($name) ?>').
+                'placeholder' => Yii::t('app', 'Filter <?php echo generateLabel($name) ?>'),
             ],
         ],
         <?php
@@ -81,7 +81,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
         //    ],
         //    'filterInputOptions' => [
         //        'class' => 'form-control',
-        //       'placeholder' => Yii::t('app', 'Filter <?php echo generateLabel($name) ?>').
+        //       'placeholder' => Yii::t('app', 'Filter <?php echo generateLabel($name) ?>'),
         //    ],
         //],
         <?php
@@ -99,7 +99,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
             ],
             'filterInputOptions' => [
                 'class' => 'form-control',
-                'placeholder' => Yii::t('app', 'Filter <?php echo generateLabel($column->name) ?>').
+                'placeholder' => Yii::t('app', 'Filter <?php echo generateLabel($column->name) ?>'),
             ],
         ],
         <?php
@@ -112,7 +112,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
         //    ],
         //    'filterInputOptions' => [
         //        'class' => 'form-control',
-        //       'placeholder' => Yii::t('app', 'Filter <?php echo generateLabel($column->name) ?>').
+        //       'placeholder' => Yii::t('app', 'Filter <?php echo generateLabel($column->name) ?>'),
         //    ],
         //],
         <?php

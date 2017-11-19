@@ -14,7 +14,7 @@ echo "<?php\n";
 
 use yii\helpers\Html;
 use coreb2c\smartadmin\DataTable;
-use yii\\widgets\\ListView;
+use yii\widgets\ListView;
 <?= $generator->enablePjax ? 'use yii\widgets\Pjax;' : '' ?>
 
 /* @var $this yii\web\View */
@@ -36,7 +36,7 @@ JarvisWidget::begin([
     'widgetIcon' => 'fa fa-table',
     'padding' => false,
     'toolbars' => [
-        <?= "<?= " ?>Html::a('<?='<span class="glyphicon glyphicon-plus"></span>';?> ' . <?= $generator->generateString('Create ' . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['create'], ['class' => 'btn btn-warning']) ?>
+        Html::a('<?='<span class="glyphicon glyphicon-plus"></span>';?> ' . <?= $generator->generateString('Create ' . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['create'], ['class' => 'btn btn-warning']),
     ],
 ]);
 ?>

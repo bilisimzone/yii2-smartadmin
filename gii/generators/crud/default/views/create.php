@@ -10,7 +10,7 @@ echo "<?php\n";
 ?>
 
 use yii\helpers\Html;
-
+use coreb2c\smartadmin\JarvisWidget;
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */

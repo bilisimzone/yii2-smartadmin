@@ -30,7 +30,7 @@ JarvisWidget::begin([
 ?>
 
     <?= "<?php " ?>$form = SAActiveForm::begin([
-        'id' => <?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-search-form
+        'id' => '<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-search-form',
         'action' => ['index'],
         'method' => 'post',
     ]); ?>

@@ -70,23 +70,20 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
      */
     public function actionIndex()
     {
-<?php if (!empty($generator->searchModelClass)): ?>
         $searchModel = new <?= isset($searchModelAlias) ? $searchModelAlias : $searchModelClass ?>();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        return $this->render('index_grid', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-<?php else: ?>
-        $dataProvider = new ActiveDataProvider([
-            'query' => <?= $modelClass ?>::find(),
-        ]);
-
-        return $this->render('index_grid', [
-            'dataProvider' => $dataProvider,
-        ]);
-<?php endif; ?>
+//        $dataProvider = new ActiveDataProvider([
+//           'query' => <?= $modelClass ?>::find(),
+//        ]);
+//
+//        return $this->render('index_list', [
+//            'dataProvider' => $dataProvider,
+//        ]);
     }
 
     /**
