@@ -127,7 +127,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                 'data-hide' => 'phone',
                 'style' => 'width: 5%;min-width:70px;'
             ],
-            'header' => Yii::t('auth', 'Options'),
+            'header' => Yii::t('app', 'Options'),
             'class' => 'yii\grid\ActionColumn'
         ],
         ],
