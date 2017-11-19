@@ -19,12 +19,22 @@ $this->title = <?= $generator->generateString('Create ' . Inflector::camel2words
 $this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass)))) ?>, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-create">
-
-    <h1><?= "<?= " ?>Html::encode($this->title) ?></h1>
-
+<?php
+echo "<?php\n";
+?>
+JarvisWidget::begin([
+    'id' => '<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-create',
+    'header' => Html::encode($this->title),
+    'widgetIcon' => 'fa fa-plus',
+]);
+?>
     <?= "<?= " ?>$this->render('_form', [
         'model' => $model,
     ]) ?>
-
-</div>
+<?php
+echo "<?php\n";
+?>
+JarvisWidget::end(); 
+<?php
+echo "?>\n";
+?>

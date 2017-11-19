@@ -10,23 +10,29 @@ echo "<?php\n";
 ?>
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use coreb2c\smartadmin\SAActiveForm;
+use coreb2c\smartadmin\JarvisWidget;
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->searchModelClass, '\\') ?> */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form coreb2c\smartadmin\SAActiveForm */
+?>
+<?php
+echo "<?php\n";
 ?>
 
-<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-search">
+JarvisWidget::begin([
+    'id' => '<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-search',
+    'header' => Yii::t('app', 'Search'),
+    'widgetIcon' => 'fa fa-search',
+    'padding' => true,
+]);
+?>
 
-    <?= "<?php " ?>$form = ActiveForm::begin([
+    <?= "<?php " ?>$form = SAActiveForm::begin([
+        'id' => <?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-search-form
         'action' => ['index'],
-        'method' => 'get',
-<?php if ($generator->enablePjax): ?>
-        'options' => [
-            'data-pjax' => 1
-        ],
-<?php endif; ?>
+        'method' => 'post',
     ]); ?>
 
 <?php
@@ -39,11 +45,16 @@ foreach ($generator->getColumnNames() as $attribute) {
     }
 }
 ?>
-    <div class="form-group">
+    <div class="form-actions">
         <?= "<?= " ?>Html::submitButton(<?= $generator->generateString('Search') ?>, ['class' => 'btn btn-primary']) ?>
         <?= "<?= " ?>Html::resetButton(<?= $generator->generateString('Reset') ?>, ['class' => 'btn btn-default']) ?>
     </div>
 
-    <?= "<?php " ?>ActiveForm::end(); ?>
-
-</div>
+    <?= "<?php " ?>SAActiveForm::end(); ?>
+    <?php
+echo "<?php\n";
+?>
+JarvisWidget::end(); 
+<?php
+echo "?>\n";
+?>

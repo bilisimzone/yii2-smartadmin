@@ -25,12 +25,22 @@ $this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Infl
 $this->params['breadcrumbs'][] = ['label' => $model-><?= $generator->getNameAttribute() ?>, 'url' => ['view', <?= $urlParams ?>]];
 $this->params['breadcrumbs'][] = <?= $generator->generateString('Update') ?>;
 ?>
-<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-update">
-
-    <h1><?= "<?= " ?>Html::encode($this->title) ?></h1>
-
+<?php
+echo "<?php\n";
+?>
+JarvisWidget::begin([
+    'id' => '<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-update',
+    'header' => Html::encode($this->title),
+    'widgetIcon' => 'fa fa-pencil-square-o',
+]);
+?>
     <?= "<?= " ?>$this->render('_form', [
         'model' => $model,
     ]) ?>
-
-</div>
+<?php
+echo "<?php\n";
+?>
+JarvisWidget::end(); 
+<?php
+echo "?>\n";
+?>

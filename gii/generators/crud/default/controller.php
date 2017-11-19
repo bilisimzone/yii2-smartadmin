@@ -45,6 +45,10 @@ use yii\filters\VerbFilter;
  */
 class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->baseControllerClass) . "\n" ?>
 {
+    public function init() {
+        parent::init();
+        $this->layout = $this->getViewPath().'/layout';
+    }
     /**
      * @inheritdoc
      */
@@ -79,7 +83,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             'query' => <?= $modelClass ?>::find(),
         ]);
 
-        return $this->render('index', [
+        return $this->render('index_grid', [
             'dataProvider' => $dataProvider,
         ]);
 <?php endif; ?>
