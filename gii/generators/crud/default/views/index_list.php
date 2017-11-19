@@ -37,7 +37,7 @@ JarvisWidget::begin([
     'widgetIcon' => 'fa fa-table',
     'padding' => false,
     'toolbars' => [
-        Html::a('<?='<span class="glyphicon glyphicon-plus"></span>';?> ' . <?= $generator->generateString('Create ' . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['create'], ['class' => 'btn btn-warning']),
+        Html::a('<?='<span class="glyphicon glyphicon-plus"></span>';?> ' . <?= $generator->generateString('Add New') ?>, ['create'], ['class' => 'btn btn-warning']),
     ],
 ]);
 ?>
