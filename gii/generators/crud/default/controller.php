@@ -39,6 +39,8 @@ use yii\data\ActiveDataProvider;
 use <?= ltrim($generator->baseControllerClass, '\\') ?>;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
+use coreb2c\smartadmin\SAActiveForm;
 
 /**
  * <?= $controllerClass ?> implements the CRUD actions for <?= $modelClass ?> model.
@@ -103,7 +105,8 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     public function actionCreate()
     {
         $model = new <?= $modelClass ?>();
-
+        $model->loadDefaultValues();
+        $this->performAjaxValidation($model);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', <?= $urlParams ?>]);
         }
@@ -122,7 +125,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     public function actionUpdate(<?= $actionParams ?>)
     {
         $model = $this->findModel(<?= $actionParams ?>);
-
+        $this->performAjaxValidation($model);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', <?= $urlParams ?>]);
         }
@@ -170,5 +173,21 @@ if (count($pks) === 1) {
         }
 
         throw new NotFoundHttpException(<?= $generator->generateString('The requested page does not exist.') ?>);
+    }
+    /**
+     * Performs AJAX validation.
+     *
+     * @param array|Model $model
+     *
+     * @throws ExitException
+     */
+    protected function performAjaxValidation($model) {
+        if (\Yii::$app->request->isAjax && !\Yii::$app->request->isPjax) {
+            if ($model->load(\Yii::$app->request->post())) {
+                \Yii::$app->response->format = Response::FORMAT_JSON;
+                echo json_encode(SAActiveForm::validate($model));
+                \Yii::$app->end();
+            }
+        }
     }
 }
