@@ -51,11 +51,35 @@ JarvisWidget::begin([
     ],
 ]);
 ?>
-
+<?php
+if (($tableSchema = $generator->getTableSchema()) === false) {
+    $colmunTotal = count($generator->getColumnNames());
+}else{
+    $colmunTotal = count($tableSchema->columns);
+}
+$lastColumn = ($colmunTotal>=6)?5:($colmunTotal-1);
+?>
     <?= "<?= " ?>DataTable::widget([
         'dataProvider' => $dataProvider,
-        <?= !empty($generator->searchModelClass) ? "'filterModel' => \$searchModel,\n        'columns' => [\n" : "'columns' => [\n"; ?>
-
+        <?= !empty($generator->searchModelClass) ? "'filterModel' => \$searchModel,\n" : ""; ?>
+        'clientOptions' => [
+//            "serverSide" => true,
+//            "ajax" => [
+//                "url" => "#",
+//                "type" => "POST"
+//            ],
+            "columnDefs" => [
+                [
+                    "orderable" => false,
+                    "targets" => [<?php echo $lastColumn ?>]
+                ],
+                [
+                    "searchable" => false,
+                    "targets" => [<?php echo $lastColumn ?>]
+                ]
+            ],
+        ],
+        'columns' => [ 
 <?php
 $count = 0;
 if (($tableSchema = $generator->getTableSchema()) === false) {

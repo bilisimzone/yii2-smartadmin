@@ -126,8 +126,68 @@ class Navigation extends Widget {
         }
         $userModuleClass = 'coreb2c\auth\Module';
         $module = \Yii::$app->getModule('auth');
-        $isRbacEnabled = $module->enableRbac === true;
+        $isRbacEnabled = ($module instanceof $userModuleClass && $module->enableRbac === true);
 
+        if (count($this->items) == 0) {
+            $this->items = [
+                [
+                    'label' => '',
+                    'icon' => '<i class="fa fa-lg fa-fw fa-home"></i>',
+                    'url' => \yii\helpers\Url::home(),
+                    'encode' => false,
+                ],
+                [
+                    'label' => \Yii::t('app', 'Definitions'),
+                    'items' => [
+                        [
+                            'label' => \Yii::t('auth', 'Users'),
+                            'url' => ['/auth/admin/index'],
+                            'items' => [
+                                [
+                                    'label' => \ Yii::t('auth', 'New user'),
+                                    'url' => ['/auth/admin/create'],
+                                ],
+                            ],
+                        ],
+                        [
+                            'label' => \Yii::t('auth', 'Authorization'),
+                            'visible' => $isRbacEnabled,
+                            'items' => [
+                                [
+                                    'label' => \Yii::t('auth', 'Roles'),
+                                    'url' => ['/auth/rbac/role/index'],
+                                ],
+                                [
+                                    'label' => \Yii::t('auth', 'Permissions'),
+                                    'url' => ['/auth/rbac/permission/index'],
+                                ],
+                                [
+                                    'label' => \Yii::t('auth', 'Rules'),
+                                    'url' => ['/auth/rbac/rule/index'],
+                                ],
+                                [
+                                    'label' => \Yii::t('auth', 'Create'),
+                                    'items' => [
+                                        [
+                                            'label' => \Yii::t('auth', 'New role'),
+                                            'url' => ['/auth/rbac/role/create'],
+                                        ],
+                                        [
+                                            'label' => \Yii::t('auth', 'New permission'),
+                                            'url' => ['/auth/rbac/permission/create'],
+                                        ],
+                                        [
+                                            'label' => \Yii::t('auth', 'New rule'),
+                                            'url' => ['/auth/rbac/rule/create'],
+                                        ]
+                                    ]
+                                ],
+                            ],
+                        ],
+                    ]
+                ],
+            ];
+        }
     }
 
     /**
