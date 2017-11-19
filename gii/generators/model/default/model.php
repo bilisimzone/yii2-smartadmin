@@ -30,7 +30,8 @@ echo "<?php\n";
 namespace <?= $generator->ns ?>;
 
 use Yii;
-<?php if($hasUserRelation===true){ ?>
+<?php if($hasUserRelation===true && $hasAuthModule===true){ ?>
+use coreb2c\auth\models\User;
 <?php } ?>
 
 /**
