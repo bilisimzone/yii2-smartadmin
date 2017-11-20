@@ -17,8 +17,6 @@ use yii\web\AssetBundle;
  */
 class SAAsset extends AssetBundle
 {
-    public $basePath = '@webroot/smartadmin';
-    public $baseUrl = '@web/smartadmin';
     public $css = [
         'css/bootstrap.min.css',
         'css/font-awesome.min.css',
@@ -49,4 +47,8 @@ class SAAsset extends AssetBundle
         'yii\web\JqueryAsset',
         'yii\web\YiiAsset',
         ];
+    public function init() {
+        parent::init();
+        $this->sourcePath = \Yii::$app->getModule('smartadmin')->assetSourcePath;
+    }
 }
