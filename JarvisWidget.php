@@ -45,6 +45,29 @@ class JarvisWidget extends Widget {
     public $footer = '';
     public $padding = true;
 
+    /**
+     *
+     * @var array
+     * 
+     * 
+     * 'tabs' => [
+     *      [
+     *          'label' => 'Lable',
+     *          'url' => ['route',[...params...]],
+     *          'active' => true || false ,
+     *          'icon' => '<i class="fa fa-lg fa-arrow-circle-o-down"></i>',
+     *          'visible' => true
+     *      ]
+     * ]
+     */
+    public $tabs = [];
+    
+    /**
+     *
+     * @var sting 'nav-tabs' || 'nav-pills' 
+     */
+    public $tablStyle = 'nav-tabs';
+
     private function getSettings() {
 
         $buttons = [
@@ -97,11 +120,16 @@ class JarvisWidget extends Widget {
         echo '</strong>';
         echo '</h2>';
 
+        if (count($this->tabs) > 0) {
+            echo '<ul id="widget-tab-' . $this->id . '" class="nav ' . $this->tablStyle . ' pull-right">';
+            foreach ($this->tabs as $tab) {
+                echo '<li class="'.((isset($tab['active']) && $tab['active']===true)?'active':'').'">';
+                echo '<a data-toggle="tab" href="'.\yii\helpers\Url::toRoute($tab['url']).'"> '.((isset($tab['icon']))?'<i class="fa fa-lg fa-arrow-circle-o-down"></i> ':'').$tab['label'].'</a>';
+                echo '</li>';
+            }
+            echo '</il>';
+        }
         // Start toolbars
-//        echo "<pre>";
-//        var_dump($this->toolbars);
-//        echo "</pre>";
-//        exit;
         foreach ($this->toolbars as $toolbar) {
             echo '<div class="widget-toolbar">';
             echo $toolbar;
