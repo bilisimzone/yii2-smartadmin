@@ -8,15 +8,17 @@
  */
 
 namespace coreb2c\smartadmin;
+
 use yii\web\AssetBundle;
+
 /**
  * Asset bundle used for all Krajee extensions with bootstrap and jquery dependency.
  *
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class SAAsset extends AssetBundle
-{
+class SAAsset extends AssetBundle {
+
     public $css = [
         'css/bootstrap.min.css',
         'css/font-awesome.min.css',
@@ -24,7 +26,6 @@ class SAAsset extends AssetBundle
         'css/smartadmin-production.min.css',
         'css/smartadmin-skins.min.css',
         'css/smartadmin-rtl.min.css',
-        'css/style.css',
         '//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700',
     ];
     // jquery asset is removed and added to yii\web\JqueryAsset as main js file
@@ -46,9 +47,28 @@ class SAAsset extends AssetBundle
     public $depends = [
         'yii\web\JqueryAsset',
         'yii\web\YiiAsset',
-        ];
+    ];
+
     public function init() {
         parent::init();
-        $this->sourcePath = \Yii::$app->getModule('smartadmin')->assetSourcePath;
+        $module = \Yii::$app->getModule('smartadmin');
+        $this->sourcePath = $module->assetSourcePath;
+        $googleMapApiKey = $module->googleMapApiKey;
+        if ($googleMapApiKey !== null and $googleMapApiKey !== '') {
+            $this->js[] = 'http://maps.googleapis.com/maps/api/js?key=' . $googleMapApiKey;
+        }
+        $scripts = $module->scripts;
+        $styles = $module->styles;
+        if(is_array($scripts) && count($scripts)>0){
+            foreach($scripts as $script){
+                $this->js[] = $script;
+            }
+        }
+        if(is_array($styles) && count($styles)>0){
+            foreach($styles as $style){
+                $this->css[] = $styles;
+            }
+        }
     }
+
 }

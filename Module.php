@@ -32,7 +32,9 @@ class Module extends \yii\base\Module
     use TranslationTrait;
     
     public $assetSourcePath = null;
-    public $assetBaseUrl = null;
+    public $googleMapApiKey = null;
+    public $scripts = [];
+    public $styles = [];
     /**
      * @var array the the internalization configuration for this widget
      */
