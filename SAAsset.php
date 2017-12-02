@@ -66,7 +66,7 @@ class SAAsset extends AssetBundle {
         }
         if(is_array($styles) && count($styles)>0){
             foreach($styles as $style){
-                $this->css[] = $styles;
+                $this->css[] = $style;
             }
         }
     }
